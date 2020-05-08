@@ -1,0 +1,23 @@
+{
+  "params":
+  {
+    "local_server": "True",
+    "local_uri": "mysql://root:@localhost/codingthunder",
+    "prod_uri": "mysql://root:@localhost/codingthunder",
+    "fb_url": "https://facebook.com/username",
+    "tw_url": "https://twitter.com/username",
+    "gh_url":   "https://github.com/username",
+    "blog_name": "Coding Thunder",
+    "tag_line": "A Blog For programmers",
+    "gmail_user":"email@gmail.com",
+    "gmail_password":"pswwd",
+    "about_text": "Hi I am Shreya and I am learning how to create a website(blog). I was thinking about doing this for a very long time, and now that it's done i am very happy.",
+    "no_of_posts": 2,
+    "login_image": "login.svg",
+    "admin_user": "hello",
+    "admin_password": "pswd",
+    "upload_location":"C:\\Users\\Dell\\PycharmProjects\\flask-tut"
+
+  }
+
+}
