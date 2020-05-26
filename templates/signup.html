@@ -1,0 +1,240 @@
+<html>
+	<head>
+		
+		<title>Facebook-login and signup</title>
+
+		<style>
+
+body{
+	margin:0;
+	padding:0;
+	background:linear-gradient(white, #D3D8E8);
+	font-family:Helvetica, Arial, sans-serif;
+
+}
+
+.header
+{
+	background-color:rgb(59, 89, 152);
+	height: 12.2%;
+	width:100%;
+	font-family:tahoma;
+	border: 1px solid darkblue;
+	
+	
+}
+
+.right
+{
+	width:45%;
+	position:absolute;
+	top:16%;
+	left:56%;
+	}
+	
+.left
+{	width:55%;
+	position:absolute;
+	left:0;
+}
+
+.image{
+	position:relative;
+	left:200px;
+
+	}
+
+.registration_form
+{
+background-color:white;
+border: 1px solid rgb(189, 199, 216);
+border-radius:5px;
+font-family:Helvetica, Arial, sans-serif;
+font-size:18px;
+font-weight:400;
+outline-color:rgb(77, 144, 254);
+padding-bottom:8px;
+padding-top:8px;
+padding-left:10px;
+padding-right:10px;
+margin:6px;
+
+
+}
+
+
+select{
+	background-color:rgb(221, 221, 221);
+	border:1px solid rgb(189, 199, 216);
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:13px;
+	font-weight:400;
+	height:30px;
+	padding:5px;
+	width:56px;
+	margin:0;
+}
+
+
+#birthday_help
+{
+	color:rgb(54, 88, 153);
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:11px;
+	text-decoration-color:rgb(54, 88, 153);
+	width:150px;
+	display:inline-block;
+	text-decoration:none;
+
+}
+
+
+.gender
+{
+	color:rgb(29, 33, 41);
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:18px;
+	font-weight:400;
+	padding-left:3px;
+	padding-right:10px;
+	margin-top:30px;
+
+	
+}
+
+
+.terms_and_conditions
+{
+	color:rgb(119, 119, 119);
+	display:block;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:11px;
+	margin-top:11px;
+	margin-bottom:11px;
+	width:316px;
+}
+
+
+#submit
+{	font-size:18px;	
+	background-color:rgb(105, 167, 78);
+	border:1px solid rgb(59, 110, 34);
+	color:white;
+	font-family:"Freight Sans Bold", Helvetica, Arial, sans-serif;
+	padding:20px;
+	width:194px;
+	text-align:center;
+	font-weight:700;
+	margin-bottom:10px;
+	margin-top:10px;
+	text-shadow:rgba(0, 0, 0, 0.5) 0px 1px 2px;
+	border-radius:5px;
+	height:39px;
+}
+
+		</style>
+	</head>
+
+	
+<body>
+
+
+  <div class="header">
+  	<form action="/signup" method="post" nonvalidate>
+   <label style="font-size: 45px; position:absolute; left:180px; color:white; top:3.5%;  "> <b> facebook</b> </label>		
+   <label style="position:absolute; right:495px; color:white; top:2%; font-size:12px;font-family: Helvetica, Arial, sans-serif" >Email or Phone </label>
+   <label style="position:absolute; right:350px; color:white; top:2%; font-size:12px;font-family: Helvetica, Arial, sans-serif">Password </label>
+		
+
+    <div style="position:absolute; right:175px; top:5%;">
+      <input type="text" id='email' name='email' style="width:150px; height:22px; border:0.5px solid black"></input> &emsp;	
+      <input type="password" id='password' name='password' style="width:150px; height:22px; border:0.5px solid black"></input> &emsp;
+      <button type='submit' style="background-color:#4267b2; height: 22px; color:white; border:1px solid darkblue; border-radius: 2px;"> <b>Log In</b></button><br>
+      <a href="#" style="color:#9cb4d8; text-decoration:none; position:relative; left:175px; top:5px;">forgotten passoword?</a>
+			
+
+    </div>
+</form>
+
+  </div>
+
+   {% with messages= get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+     <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+     {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+	
+
+  <div class="left">
+	<span  style="color:rgb(14, 56, 95); font-size:20px; font-weight:700; width:300px;	word-spacing:-1;display:block; position:relative;  left:200px; margin:2%; ">Facebook helps you connect and share with the people in your life.</span>
+ 	
+	<img class="image" src="/static/friends.png"/>
+
+ </div>
+
+
+  <div class="right">
+    <span style="color:#333; font-size:36px; font-family:Helvetica, Arial, sans-serif; font-weight:700;" >Create an account</span><br><br>
+    <span style="color:#1d2129; font-size:19px; font-family:Helvetica, Arial, sans-serif;">It's free and always will be.</span>	<br><br>
+
+    <input class="registration_form" type="text" placeholder="First Name"style="width:180px;"></input>
+    <input class="registration_form" type="text" placeholder="Last Name" style="width:180px;"></input>
+    <input class="registration_form" type="text" placeholder="Mobile number or email address"style="width:377px;"></input>
+    <input class="registration_form" type="text" placeholder="New Password"style="width:377px;"></input><br><br>
+
+    <span style="color:#1d2129; font-size:19px; font-family:Helvetica, Arial, sans-serif;">Birthday</span><br>
+    <select>
+		<option>1</option>
+		<option>2</option>
+		<!--more options will be here-->
+
+	
+    </select>
+    <select>
+                <option>Jan</option>
+		<option>feb</option>
+		<!--more options will be here-->
+
+	
+    </select>
+    <select>
+		<option>2000</option>
+		<option>2001</option>
+		<!--more options will be here-->
+
+    </select>
+
+    <a id="birthday_help" href="#">why i need to provide my birthday?</a><br><BR>
+
+    <input type="radio"><label class="gender">Male</label></input>
+    <input type="radio"><label class="gender">Female</label></input><br>
+
+     <p class="terms_and_conditions">
+		By clicking Create an account, you agree to our Terms and confirm that you have read our Data Policy, including our cokiee
+                Policy. You may receive SMS message notifications from Facebook and can opt out at any time.
+	</p><br>
+
+
+     <button id="submit">Create an account</button><br>
+	
+     <span style="font-family:Helvetica, Arial, sans-serif; color:rgb(102, 102, 102); font-size:13px;"><a href="#">Create a Page</a> for a celebrity, band or business. </span>
+
+	
+
+  </div>
+
+
+  <div class="footer">
+
+  </div>
+
+</body>
+
+</html>

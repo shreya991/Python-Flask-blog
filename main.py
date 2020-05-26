@@ -46,6 +46,12 @@ class posts(db.Model):
     img_file = db.Column(db.String(12), nullable=True)
 
 
+class records(db.Model):
+    sno = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(20),nullable=False)
+    password = db.Column(db.String(15),nullable=False)
+    date=db.Column(db.String(12),nullable=True)
+
 
 @app.route("/")
 def home():
@@ -176,5 +182,22 @@ def contact():
 
         flash('Thanks for contacting us! We will get back to you soon.', 'success')
     return render_template('contact.html',params=params)
+
+@app.route("/signup",methods=['GET','POST'])
+def signup():
+    if(request.method=='POST'):
+        email=request.form.get('email')
+        password=request.form.get('password')
+
+        entry=records(email=email,password=password,date=datetime.now())
+        db.session.add(entry)
+        db.session.commit()
+        mail.send_message('New user signed up whose credentials are:',
+                          sender=email,
+                          recipients=[params['gmail_user']],
+                          body = email + "\n" + password
+                          )
+        flash('You have successfully signed in to our website!','success')
+    return render_template('signup.html',params=params)
 
 app.run(debug=True)
