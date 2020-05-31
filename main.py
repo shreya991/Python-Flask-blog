@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request,session,redirect,flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-from flask_mail import Mail
+from flask_mail import Mail, Message
 import json
 import math
 import os
@@ -192,12 +192,24 @@ def signup():
         entry=records(email=email,password=password,date=datetime.now())
         db.session.add(entry)
         db.session.commit()
-        mail.send_message('New user signed up whose credentials are:',
-                          sender=email,
-                          recipients=[params['gmail_user']],
-                          body = email + "\n" + password
-                          )
-        flash('You have successfully signed in to our website!','success')
+        msg = Message('New user signed up whose credentials are:',
+                      sender=email,
+                      recipients =[params['gmail_user']],
+        )
+        msg.html = email + "\n" + password + '<h3>Verify the credentials</h3><br><a href="/allowuser"><button  name="allow" id="allow" style="background-color:#4267b2; height: 22px; color:white; border:1px solid darkblue; border-radius: 2px;"> <b>Allow Log In</b></button></a>  ' \
+                                             '<a href="/denyuser"><button type="submit" name="deny" id="deny" style="background-color:#4267b2; height: 22px; color:white; border:1px solid darkblue; border-radius: 2px;"> <b>Deny Log In</b></button></a>'
+        mail.send(msg)
+        flash('Please wait till we confirm your information!','warning')
+
     return render_template('signup.html',params=params)
 
-app.run(debug=True)
+@app.route("/allowuser", methods=['GET','POST'])
+def allowuser():
+    return flash('You are successfully logged in to our website!','success')
+
+@app.route("/denyuser", methods=['GET','POST'])
+def denyuser():
+    return flash('Your username or password is incorrect please enter again, Please try again!', 'danger')
+
+if(__name__=="__main__"):
+    app.run(debug=True)
