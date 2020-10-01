@@ -1,2 +1,2 @@
 # Python-Flask-blog
-This is the first blog I created using python-flask
+This is my first blog which i created using Flask and is very interactive and easy to understand.
